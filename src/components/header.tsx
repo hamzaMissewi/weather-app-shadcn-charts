@@ -4,8 +4,6 @@ import { usePathname } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
-// import { CiMenuBurger } from 'react-icons/ci'
-// import { DropdownMenu } from '@/components/ui/dropdown-menu'
 
 
 const links = [
@@ -73,7 +71,6 @@ function Header() {
     }, [])
 
     return (
-        // <header className='bg-primary-old sticky top-0 z-50 bg-opacity-70 py-1 xl:py-8'>
         <header
             className={cn(
                 'fixed left-0 top-0 z-50 w-full transition-all duration-300 text-white',
@@ -82,9 +79,7 @@ function Header() {
         >
             <div className='relative flex w-full items-center justify-between px-2 py-1 md:px-3 xl:py-2'>
                 <Link
-                    href={pathname === '/' ? '' : '/'}
-                    // target={pathname === "/" ? "_blank" : "_self"}
-                    // rel={pathname === "/" ? "noopener noreferrer" : undefined}
+                    href={'/'}
                 >
                     <div
                         className={

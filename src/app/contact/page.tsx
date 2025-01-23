@@ -206,19 +206,11 @@ function ContactPage() {
                                     Let&apos;s Talk
                                     {/*Let's work together*/}
                                 </h3>
-                                {/*<p className="text-justify text-gray-600 dark:text-white">*/}
-                                {/*  Thank you for checking my portfolio! If you have any*/}
-                                {/*  questions, inquiries, or collaboration opportunities, please*/}
-                                {/*  feel free to reach out. I would love to hear from you! You can*/}
-                                {/*  contact me through the form below or via my social media*/}
-                                {/*  links. I strive to respond to all messages as quickly as*/}
-                                {/*  possible.*/}
-                                {/*</p>*/}
+
 
                                 <p className='text-lg font-light text-white/80 hover:text-white'>
                                     I got what you need. Contact me for top-notch development
                                     services
-                                    {/*/!*Let&apos;s talk about what you think I am ready to work*/}
                                 </p>
                                 <div className={'grid grid-cols-1 gap-6 md:grid-cols-2'}>
                                     <FormField
@@ -295,7 +287,6 @@ function ContactPage() {
                                     />
                                 </div>
 
-                                {/* select */}
 
                                 <FormField
                                     control={form.control}
@@ -356,16 +347,11 @@ function ContactPage() {
                                         </FormItem>
                                     )}
                                 />
-                                {/*<Textarea*/}
-                                {/*  className={"h-[200px]"}*/}
-                                {/*  placeholder={"Type your message here."}*/}
-                                {/*/>*/}
+
                                 <Button
                                     type={'submit'}
                                     size={'default'}
-                                    // className={'text-accent_green w-fit self-center border'}
                                     className={
-                                        // 'w-fit self-center border bg-accent_blue text-black'
                                         'w-fit self-center border bg-accent_green text-black hover:bg-accent_green-hover'
                                     }
                                 >
@@ -374,11 +360,7 @@ function ContactPage() {
                                         <span className='gradient-green-text text-lg font-bold'>
                       &nbsp;&nbsp; Loading...
                     </span>
-                                        // <LoadingSpinner
-                                        // loaderStyles={'text-accent_green'}
-                                        // width={34}
-                                        // height={34}
-                                        // />
+
                                     )}
                                 </Button>
                             </form>
@@ -386,7 +368,6 @@ function ContactPage() {
                     </div>
                     {/* Info */}
                     <div className='order-1 mb-8 flex items-center xl:order-none xl:mx-2 xl:mb-0 xl:justify-end'>
-                        {/*<ul className={'flex flex-col gap-10'}>*/}
                         <ul className={'grid w-full grid-cols-1 gap-3 md:grid-cols-2'}>
                             {info.map((item, index) => (
                                 <li
