@@ -195,7 +195,8 @@ export function CityPicker() {
           onClick={handleContinue}
           className="bg-green-500 hover:bg-green-500/90"
         >
-          Continue
+            Search
+          {/*Continue*/}
         </Button>
       </CardFooter>
     </Card>

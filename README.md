@@ -70,7 +70,7 @@ Make sure you have the following installed on your machine:
 **Cloning the Repository**
 
 ```bash
-git clone https://github.com/code-spirit-369/weather-app-shadcn-charts.git
+git clone https://github.com/hamzaMissewi/weather-app-shadcn-charts.git
 cd weather-app-shadcn-charts
 ```
 

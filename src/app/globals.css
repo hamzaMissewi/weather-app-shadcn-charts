@@ -3,6 +3,9 @@
   @tailwind utilities;
 
   @layer base {
+      body {
+          @apply charcoal-smoke text-white;
+      }
     :root {
       --background: 0 0% 100%;
       --foreground: 222.2 84% 4.9%;
@@ -57,6 +60,56 @@
       --chart-4: 280 65% 60%;
       --chart-5: 340 75% 55%;
     }
+
+      .gradient-purple {
+          @apply bg-gradient-to-r from-violet-950 via-purple-900 to-indigo-900;
+      }
+
+      .charcoal-smoke {
+          @apply bg-gradient-to-br from-gray-700 via-gray-800 to-gray-900;
+      }
+
+      .gradient-sky {
+          @apply bg-gradient-to-br from-cyan-50 to-sky-400 text-black;
+      }
+
+      .gradient-lime {
+          @apply bg-gradient-to-r from-lime-800 to-green-800 text-white;
+      }
+
+      .tropical-vibes {
+          @apply bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500;
+      }
+
+      .donny {
+          @apply bg-[linear-gradient(60deg,_rgb(247,_149,_51),_rgb(243,_112,_85),_rgb(239,_78,_123),_rgb(161,_102,_171),_rgb(80,_115,_184),_rgb(16,_152,_173),_rgb(7,_179,_155),_rgb(111,_186,_130))];
+      }
+
+      .gradient-matrix {
+          @apply from-matrix-1 via-matrix-2 to-matrix-3 bg-gradient-to-r;
+      }
+
+      .gradient-green-text {
+          @apply bg-gradient-to-br from-[#00ff99] to-green-900 bg-clip-text text-transparent dark:from-pink-500 dark:to-orange-400;
+      }
+      .gradient-purple-text {
+          @apply bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent;
+      }
+      .gradient-vert-text {
+          @apply bg-gradient-to-b from-[#00ff99] to-[#00ff44] bg-clip-text text-transparent;
+      }
+      .text-outline {
+          -webkit-text-stroke: 1px #ffffff;
+      }
+      .text-outline-hover {
+          -webkit-text-stroke: 1px #00ff99;
+      }
+      .text-outline-pink {
+          -webkit-text-stroke: 1px #c01685;
+      }
+      .text-outline-yellow {
+          -webkit-text-stroke: 1px #c4c016;
+      }
   }
 
   @layer base {
