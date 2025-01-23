@@ -4,7 +4,8 @@
 
   @layer base {
       body {
-          @apply charcoal-smoke text-white;
+          @apply charcoal-smoke ;
+          /*text-white*/
       }
     :root {
       --background: 0 0% 100%;

@@ -185,12 +185,12 @@ function ContactPage() {
 
     return (
         <motion.section
-            initial={{ opacity: 0 }}
-            animate={{
-                opacity: 1,
-                transition: { delay: 2.4, duration: 0.4, ease: 'easeIn' }
-            }}
-            className={'pb-6'}
+            // initial={{ opacity: 0 }}
+            // animate={{
+            //     opacity: 1,
+            //     transition: { delay: 2.4, duration: 0.4, ease: 'easeIn' }
+            // }}
+            className={'pb-6 text-white mt-20 h-full'}
         >
             <div className={'mx-auto space-y-5'}>
                 <div className={'flex flex-col gap-[30px] xl:flex-row'}>

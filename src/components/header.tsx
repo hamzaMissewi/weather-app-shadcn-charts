@@ -25,7 +25,7 @@ const links = [
 function  Navigation(){
     const pathname = usePathname()
     return (
-        <div className='flex items-center gap-x-10 '>
+        <div className='flex items-center gap-x-10 text-white'>
             {links.map((link, index) => (
                     <Link
                         href={link.path}
@@ -43,7 +43,7 @@ function  Navigation(){
                 <Button
                     variant={'default'}
                     size={'sm'}
-                    className='ml-6 h-min bg-accent_green py-1.5 shadow-md hover:shadow-gray-400 text-black'
+                    className='ml-6 h-min bg-accent_green py-1.5 shadow-md hover:shadow-gray-400'
                 >
                      Contact Me
                 </Button>
@@ -53,7 +53,7 @@ function  Navigation(){
 }
 
 function Header() {
-    const pathname = usePathname()
+    // const pathname = usePathname()
     const [isScrolled, setIsScrolled] = useState(false)
 
     const handleScroll = () => {
@@ -74,7 +74,7 @@ function Header() {
         <header
             className={cn(
                 'fixed left-0 top-0 z-50 w-full transition-all duration-300 text-white',
-                !isScrolled ? 'bg-primary shadow-lg' : 'bg-primary/40'
+                !isScrolled ? 'bg-primary shadow-lg' : 'bg-gray-700/30'
             )}
         >
             <div className='relative flex w-full items-center justify-between px-2 py-1 md:px-3 xl:py-2'>
