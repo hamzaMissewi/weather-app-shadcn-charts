@@ -1,7 +1,13 @@
 "use client";
 
 import { TrendingUp } from "lucide-react";
-import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
+import {
+    Area,
+    AreaChart,
+    CartesianGrid,
+    XAxis,
+    YAxis
+} from "recharts";
 
 import {
   Card,
@@ -90,6 +96,12 @@ export function HumidityChart({
                 });
               }}
             />
+              {/*<YAxis*/}
+              {/*    dataKey="percentage"*/}
+              {/*    tickLine={false}*/}
+              {/*    axisLine={false}*/}
+              {/*    tickMargin={100}*/}
+              {/*/>*/}
             <ChartTooltip
               cursor={false}
               content={

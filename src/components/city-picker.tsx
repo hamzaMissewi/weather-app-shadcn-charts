@@ -70,7 +70,7 @@ export function CityPicker() {
 
   const handleCountryChange = (countryName: string) => {
     const country = countries.find(
-      (country) => country.label === countryName
+      (country) => country.label === countryName,
     ) as TCountry;
     setSelectedCountry(country);
     setSelectedState(null);
@@ -80,7 +80,7 @@ export function CityPicker() {
   const handleStateChange = (stateName: string) => {
     if (selectedCountry) {
       const state = State.getStatesOfCountry(
-        selectedCountry.value.isoCode
+        selectedCountry.value.isoCode,
       )?.find((s) => s.name === stateName);
       if (state) {
         setSelectedState({
@@ -100,7 +100,7 @@ export function CityPicker() {
   const handleCityChange = (cityName: string) => {
     if (selectedCountry) {
       const city = City.getCitiesOfCountry(selectedCountry.value.isoCode)?.find(
-        (c) => c.name === cityName
+        (c) => c.name === cityName,
       );
       if (city) {
         setSelectedCity({
@@ -119,7 +119,7 @@ export function CityPicker() {
 
   const handleContinue = () => {
     router.push(
-      `/weather/${selectedCity?.value.name}/${selectedCity?.value.latitude}/${selectedCity?.value.longitude}`
+      `/weather/${selectedCity?.value.name}/${selectedCity?.value.latitude}/${selectedCity?.value.longitude}`,
     );
   };
 
@@ -162,7 +162,7 @@ export function CityPicker() {
                     <SelectItem key={index} value={state.name}>
                       {state.name}
                     </SelectItem>
-                  )
+                  ),
                 )}
             </SelectContent>
           </Select>
@@ -182,7 +182,7 @@ export function CityPicker() {
                     <SelectItem key={index} value={city.name}>
                       {city.name}
                     </SelectItem>
-                  )
+                  ),
                 )}
             </SelectContent>
           </Select>
@@ -195,7 +195,7 @@ export function CityPicker() {
           onClick={handleContinue}
           className="bg-green-500 hover:bg-green-500/90"
         >
-            Search
+          Search
           {/*Continue*/}
         </Button>
       </CardFooter>
