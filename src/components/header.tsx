@@ -63,6 +63,7 @@ function Header() {
             setIsScrolled(false)
         }
     }
+
     useEffect(() => {
         window.addEventListener('scroll', handleScroll)
         return () => {

@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header
     from "@/components/header";
+import React
+    from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,7 +23,7 @@ export default function RootLayout({
       <body className={inter.className}>
       <div className={"space-y-2"}>
            <Header />
-       <div className={"min-h-max w-full"}>
+       <div className={"flex-1 p-2"}>
            {children}
        </div>
        </div>

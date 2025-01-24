@@ -4,7 +4,7 @@
 
   @layer base {
       body {
-          @apply charcoal-smoke ;
+          @apply charcoal-smoke;
           /*text-white*/
       }
     :root {
@@ -64,6 +64,9 @@
 
       .gradient-purple {
           @apply bg-gradient-to-r from-violet-950 via-purple-900 to-indigo-900;
+      }
+      .gradient-green {
+       @apply  bg-gradient-to-b from-green-900/90 via-green-400/90 to-green-200/90
       }
 
       .charcoal-smoke {
