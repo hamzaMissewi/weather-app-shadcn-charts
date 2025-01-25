@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
-  // const { location, lat, lng } = await req.json(); // Get location name or coordinates from query parameters
-
   // const url = await getWeatherUrl({ location, lat, lng });
 
   const { searchParams } = new URL(req.url);
@@ -10,25 +8,13 @@ export async function GET(req: NextRequest) {
   // const lat = searchParams.get("lat");
   // const lng = searchParams.get("lng");
 
-  // if (!lat || !lng) {
-  //   return NextResponse.json(
-  //     { error: "Latitude and longitude are required" },
-  //     { status: 400 },
-  //   );
-  // }
-
   const apiKey = process.env.OPENWEATHERMAP_API_KEY!;
 
   if (!apiKey) {
     return NextResponse.json({ error: "Invalid API key" });
   }
 
-  // const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&units=metric&appid=${apiKey}`;
-
-  // const url = `https://api.openweathermap.org/data/2.5/weather?units=metric&exclude=hourly,daily&appid=${apiKey}`;
-
   const url = `https://api.openweathermap.org/data/2.5/weather?appid=${apiKey}`;
-
   const newUrl = new URL(url);
 
   if (location && location !== "") {
@@ -64,7 +50,6 @@ export async function GET(req: NextRequest) {
 
     console.log("weather open data response", data);
 
-    // Extract relevant data
     const weatherDetails = {
       location: data.name,
       coords: data.coord,

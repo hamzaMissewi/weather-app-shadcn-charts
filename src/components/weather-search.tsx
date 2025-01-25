@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 import { getWeatherUrl } from "@/lib/weather";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import LoadingSpinner from "@/components/LoadingSpinner";
+import LoadingSpinner from "@/components/loading-spinner";
 import { Button } from "@/components/ui/button";
-import ReactJson from "react-json-view";
+// import ReactJson from "react-json-view";
 
 export default function WeatherSearch() {
   const [location, setLocation] = useState("");
@@ -15,6 +15,19 @@ export default function WeatherSearch() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const router = useRouter();
+
+  const [isClient, setIsClient] = useState(false);
+
+  // useEffect(() => {
+  //   if (typeof window !== "undefined") {
+  //     // This code runs only on the client
+  //     document.title = "Weather Search";
+  //   }
+  // }, []);
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   const fetchWeather = async () => {
     setLoading(true);
     try {
@@ -81,6 +94,10 @@ export default function WeatherSearch() {
   //   }
   // }, [weather]);
 
+  if (!isClient) {
+    return <LoadingSpinner />; // Fallback for SSR
+  }
+
   return (
     <div className="p-4 w-4xl mx-auto">
       <div className="space-y-3 w-full">
@@ -121,22 +138,22 @@ export default function WeatherSearch() {
       </div>
       {error && <p className="text-red-500 mt-3">{error}</p>}
 
-      {weather && (
-        <div className="mt-4 text-white flex-wrap text-wrap w-full">
-          {/*<strong>{m.role === "user" ? "You: " : "AI: "}</strong>*/}
-          <strong>Result:</strong>
-          <div className="p-4 bg-gray-800 rounded-lg text-white">
-            <ReactJson
-              src={weather}
-              theme="monokai"
-              collapsed={false}
-              displayDataTypes={false}
-              displayObjectSize={false}
-              enableClipboard={true}
-            />
-          </div>
-        </div>
-      )}
+      {/*{weather && (*/}
+      {/*  <div className="mt-4 text-white flex-wrap text-wrap w-full">*/}
+      {/*    /!*<strong>{m.role === "user" ? "You: " : "AI: "}</strong>*!/*/}
+      {/*    <strong>Result:</strong>*/}
+      {/*    <div className="p-4 bg-gray-800 rounded-lg text-white">*/}
+      {/*      <ReactJson*/}
+      {/*        src={weather}*/}
+      {/*        theme="monokai"*/}
+      {/*        collapsed={false}*/}
+      {/*        displayDataTypes={false}*/}
+      {/*        displayObjectSize={false}*/}
+      {/*        enableClipboard={true}*/}
+      {/*      />*/}
+      {/*    </div>*/}
+      {/*  </div>*/}
+      {/*)}*/}
       {weather && !weather.error && (
         <div className={"flex flex-col justify-between h-full my-5"}>
           <Button
