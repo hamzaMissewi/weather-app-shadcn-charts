@@ -6,6 +6,8 @@ import { toast } from "sonner";
 import LoadingSpinner from "@/components/loading-spinner";
 import { Button } from "@/components/ui/button";
 // import ReactJson from "react-json-view";
+import dynamic from "next/dynamic";
+const DynamicReactJson = dynamic(import("react-json-view"), { ssr: false });
 
 export default function WeatherSearch() {
   const [location, setLocation] = useState("");
@@ -79,8 +81,6 @@ export default function WeatherSearch() {
     }
   };
 
-  // You: Describe the weather in tunis: {"coord":{"lon":9,"lat":34},"weather":[{"id":800,"main":"Clear","description":"clear sky","icon":"01n"}],"base":"stations","main":{"temp":13.25,"feels_like":11.75,"temp_min":13.25,"temp_max":13.25,"pressure":1023,"humidity":43,"sea_level":1023,"grnd_level":1012},"visibility":10000,"wind":{"speed":1.07,"deg":256,"gust":1.22},"clouds":{"all":8},"dt":1737776955,"sys":{"country":"TN","sunrise":1737786320,"sunset":1737823623},"timezone":3600,"id":2464461,"name":"Tunisia","cod":200}
-
   //   useEffect(() => {
   //   if (weather && weather.location && weather.coords) {
   //     toast.success(
@@ -138,22 +138,22 @@ export default function WeatherSearch() {
       </div>
       {error && <p className="text-red-500 mt-3">{error}</p>}
 
-      {/*{weather && (*/}
-      {/*  <div className="mt-4 text-white flex-wrap text-wrap w-full">*/}
-      {/*    /!*<strong>{m.role === "user" ? "You: " : "AI: "}</strong>*!/*/}
-      {/*    <strong>Result:</strong>*/}
-      {/*    <div className="p-4 bg-gray-800 rounded-lg text-white">*/}
-      {/*      <ReactJson*/}
-      {/*        src={weather}*/}
-      {/*        theme="monokai"*/}
-      {/*        collapsed={false}*/}
-      {/*        displayDataTypes={false}*/}
-      {/*        displayObjectSize={false}*/}
-      {/*        enableClipboard={true}*/}
-      {/*      />*/}
-      {/*    </div>*/}
-      {/*  </div>*/}
-      {/*)}*/}
+      {weather && (
+        <div className="mt-4 text-white flex-wrap text-wrap w-full">
+          {/*<strong>{m.role === "user" ? "You: " : "AI: "}</strong>*/}
+          <strong>Result:</strong>
+          <div className="p-4 bg-gray-800 rounded-lg text-white">
+            <DynamicReactJson
+              src={weather}
+              theme="monokai"
+              collapsed={false}
+              displayDataTypes={false}
+              displayObjectSize={false}
+              enableClipboard={true}
+            />
+          </div>
+        </div>
+      )}
       {weather && !weather.error && (
         <div className={"flex flex-col justify-between h-full my-5"}>
           <Button
