@@ -6,14 +6,13 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
 const links = [
+  {
+    name: "Search",
+    path: "/weather/search",
+  },
   // {
-  //     name: 'home',
-  //     path: '/'
-  // },
-  // {
-  //     name: 'map',
-  //     path: '/google/map'
-  //     // path: '/weather/tunis'
+  //   name: "Search New",
+  //   path: "/weather/new",
   // },
   {
     name: "about",
@@ -70,43 +69,42 @@ function Header() {
   return (
     <header
       className={cn(
-        "fixed left-0 top-0 z-50 w-full transition-all duration-300 text-white",
+        "fixed left-0 top-0 z-50 w-full transition-all duration-300 text-white border-b border-white",
         !isScrolled ? "bg-primary shadow-lg" : "bg-gray-700/30",
       )}
     >
-      <div className="relative flex w-full items-center justify-between px-2 py-1 md:px-3 xl:py-2">
+      <div className="relative flex w-full items-center justify-between p-2 md:px-3 xl:py-2">
         <Link href={"/"}>
-          <div
-            className={
-              "inset-shadow-gray-500 mx-auto ml-5 rounded-full  px-3 py-0 text-white transition-colors duration-500 ease-out hover:bg-primary_blue hover:text-accent_green lg:m-0"
-            }
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="180"
-              height="50"
-              viewBox="0 0 400 100"
-              fill={"none"}
-            >
-              <rect width="100%" height="100%" fill="transparent" />
-              <text
-                x="50%"
-                y="50%"
-                dominantBaseline="middle"
-                textAnchor="middle"
-                fontFamily="Arial, sans-serif"
-                fontSize="40"
-                fill="currentColor"
-                fontWeight="bold"
-              >
-                Hamza Weather App.
-              </text>
-            </svg>
-          </div>
-          {/*<h1 className='hover:text-accent_green text-xl font-bold lg:text-2xl xl:text-4xl'>*/}
-          {/*  Hamza Dev*/}
-          {/*  <span className='text-accent_green'>.</span>*/}
-          {/*</h1>*/}
+          {/*<div*/}
+          {/*  className={*/}
+          {/*    "inset-shadow-gray-500 mx-auto ml-5 rounded-full  px-3 py-0 text-white transition-colors duration-500 ease-out hover:bg-primary_blue hover:text-accent_green lg:m-0"*/}
+          {/*  }*/}
+          {/*>*/}
+          {/*  <svg*/}
+          {/*    xmlns="http://www.w3.org/2000/svg"*/}
+          {/*    width="180"*/}
+          {/*    height="50"*/}
+          {/*    viewBox="0 0 400 100"*/}
+          {/*    fill={"none"}*/}
+          {/*  >*/}
+          {/*    <rect width="100%" height="100%" fill="transparent" />*/}
+          {/*    <text*/}
+          {/*      x="50%"*/}
+          {/*      y="50%"*/}
+          {/*      dominantBaseline="middle"*/}
+          {/*      textAnchor="middle"*/}
+          {/*      fontFamily="Arial, sans-serif"*/}
+          {/*      fontSize="40"*/}
+          {/*      fill="currentColor"*/}
+          {/*      fontWeight="bold"*/}
+          {/*    >*/}
+          {/*      Hamza Weather App*/}
+          {/*    </text>*/}
+          {/*  </svg>*/}
+          {/*</div>*/}
+          <h1 className="hover:text-accent_green text-lg font-extrabold lg:text-xl xl:text-2xl">
+            <span className="text-accent_green">Hamza M.</span> Weather App
+          </h1>
         </Link>
         <div className="items-center gap-8 flex">
           <Navigation />

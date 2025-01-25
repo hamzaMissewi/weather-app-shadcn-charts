@@ -1,6 +1,6 @@
 "use client";
 
-import { Country, State, City } from "country-state-city";
+import { City, Country, State } from "country-state-city";
 
 import {
   Card,
@@ -18,8 +18,20 @@ import {
 } from "@/components/ui/select";
 import { MapPinIcon } from "lucide-react";
 import { Button } from "./ui/button";
-import { useState } from "react";
+import * as React from "react";
+import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
+import { Input } from "@/components/ui/input";
+import { Popover, PopoverContent } from "@/components/ui/popover";
+// import {
+//   Command,
+//   CommandEmpty,
+//   CommandGroup,
+//   CommandInput,
+//   CommandItem,
+//   CommandList,
+// } from "@/components/ui/command";
+// import { cn } from "@/lib/utils";
 
 type TCountry = {
   value: {
@@ -61,21 +73,57 @@ const countries = Country.getAllCountries().map((country) => ({
   label: country.name,
 }));
 
-export function CityPicker() {
+export function CityPickerWithSearch() {
   const [selectedCountry, setSelectedCountry] = useState<TCountry>(null);
+  const [searchCountryTerm, setSearchCountryTerm] = useState("");
   const [selectedState, setSelectedState] = useState<TState>(null);
   const [selectedCity, setSelectedCity] = useState<TCity>(null);
 
   const router = useRouter();
 
   const handleCountryChange = (countryName: string) => {
+    setSearchCountryTerm(countryName);
     const country = countries.find(
       (country) => country.label === countryName,
     ) as TCountry;
-    setSelectedCountry(country);
-    setSelectedState(null);
-    setSelectedCity(null);
+
+    if (country) {
+      setSelectedCountry(country);
+      setSelectedState(null);
+      setSelectedCity(null);
+      // setSearchCountryTerm(country.label);
+    }
   };
+
+  // Filter countries based on search term
+  const filteredCountries = useMemo(
+    () =>
+      countries.filter((country) =>
+        country.label.toLowerCase().includes(searchCountryTerm.toLowerCase()),
+      ),
+    [searchCountryTerm],
+  );
+
+  // Handle keydown events (e.g., Enter key)
+  const handleKeydown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && filteredCountries.length > 0) {
+      handleCountryChange(filteredCountries[0].label); // Select the first filtered option
+    }
+  };
+  //
+  // const handleKeydownCountry = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  //   if (e.key === "Enter") {
+  //     const selectedCountry = countries.find((c) =>
+  //       c.label.toLowerCase().includes(e.currentTarget.value.toLowerCase()),
+  //     );
+  //
+  //     if (selectedCountry) {
+  //       setSelectedCountry(selectedCountry);
+  //     }
+  //   }
+  // };
+
+  // const [open, setOpen] = React.useState(false);
 
   const handleStateChange = (stateName: string) => {
     if (selectedCountry) {
@@ -124,8 +172,7 @@ export function CityPicker() {
   };
 
   return (
-    // <Card className="bg-green-200/40 border-none w-full lg:w-96">
-    <Card className="bg-gray-800/50 border-none w-full lg:w-96">
+    <Card className="bg-green-200/40 border-none w-full lg:w-96">
       <CardHeader className="flex items-center">
         <CardTitle>
           <div className="flex items-center text-white">
@@ -138,18 +185,65 @@ export function CityPicker() {
       <CardContent>
         <div className="space-y-4">
           {/* Country Selector */}
+
+          {/*<PopoverTrigger asChild>*/}
+          {/*  <SelectValue placeholder="Select a Country" />*/}
+          {/*</PopoverTrigger>*/}
           <Select onValueChange={handleCountryChange}>
             <SelectTrigger>
-              <SelectValue placeholder="Select a Country" />
+              {/*<SelectValue placeholder="Select a Country" />*/}
             </SelectTrigger>
             <SelectContent>
-              {countries.map((country, index: number) => (
-                <SelectItem key={index} value={country.label}>
-                  {country.label}
-                </SelectItem>
-              ))}
+              <Input
+                placeholder="Search and select a country..."
+                value={searchCountryTerm}
+                onChange={(e) => handleCountryChange(e.target.value)}
+                // selectedCountry ? selectedCountry.label : searchCountryTerm
+                // onChange={(e) => setSearchCountryTerm(e.target.value)}
+                // onKeyDown={handleKeydown}
+                className="mb-2"
+                autoFocus
+              />
+              {/*<div className="w-full p-2 cursor-pointer">*/}
+              {/*<Input*/}
+              {/*  placeholder="Search and select a country..."*/}
+              {/*  value={searchCountryTerm}*/}
+              {/*  // selectedCountry ? selectedCountry.label : searchCountryTerm*/}
+              {/*  onChange={(e) => handleCountryChange(e.target.value)}*/}
+              {/*  // onChange={(e) => setSearchCountryTerm(e.target.value)}*/}
+              {/*  onKeyDown={handleKeydown}*/}
+              {/*  className="mb-2"*/}
+              {/*  autoFocus*/}
+              {/*/>*/}
+
+              <Popover>
+                <PopoverContent className="w-full cursor-pointer">
+                  {(filteredCountries.length > 0
+                    ? filteredCountries
+                    : countries
+                  ).map((country, index) => (
+                    <SelectItem key={index} value={country.label}>
+                      {country.label}
+                    </SelectItem>
+                  ))}
+                </PopoverContent>
+              </Popover>
             </SelectContent>
           </Select>
+
+          {/* TODO OLD SELECT COUNTRY Country Selector */}
+          {/*<Select onValueChange={handleCountryChange}>*/}
+          {/*    <SelectTrigger>*/}
+          {/*        <SelectValue placeholder="Select a Country" />*/}
+          {/*    </SelectTrigger>*/}
+          {/*    <SelectContent>*/}
+          {/*        {countries.map((country, index: number) => (*/}
+          {/*            <SelectItem key={index} value={country.label}>*/}
+          {/*                {country.label}*/}
+          {/*            </SelectItem>*/}
+          {/*        ))}*/}
+          {/*    </SelectContent>*/}
+          {/*</Select>*/}
 
           {/* State/District Selector */}
           <Select onValueChange={handleStateChange} disabled={!selectedCountry}>
@@ -197,7 +291,6 @@ export function CityPicker() {
           className="bg-green-500 hover:bg-green-500/90"
         >
           Search
-          {/*Continue*/}
         </Button>
       </CardFooter>
     </Card>
